@@ -1,0 +1,62 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
+    <h3 class="text-center mb-4">Sign In</h3>
+    <form [formGroup]="signInForm">
+      <!-- Email Field -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          placeholder="Enter your email"
+          required
+        />
+        <div *ngIf="signInControl['email']?.touched && signInControl['email']?.invalid" class="text-danger">
+          <div *ngIf="signInControl['email']?.errors?.['required']"> Email is required.</div>
+          <div *ngIf="signInControl['email']?.errors?.['email']">Please enter a valid email address.</div>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          placeholder="Enter your password"
+          required
+        />
+        <div *ngIf="signInControl['password']?.touched && signInControl['password']?.invalid" class="text-danger">
+          <div *ngIf="signInControl['password']?.errors?.['required']">
+            Password is required.
+          </div>
+          <div *ngIf="signInControl['password']?.errors?.['minlength']">
+            Password must be at least 8 characters long.
+          </div>
+          <div *ngIf="signInControl['password']?.errors?.['pattern']">
+            Password must contain:
+            <ul>
+              <li>At least one uppercase letter</li>
+              <li>At least one lowercase letter</li>
+              <li>At least one number</li>
+              <li>At least one special character</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="d-grid">
+        <button type="button" [disabled]="!signInForm.valid" class="btn btn-primary" (click)="signin()">
+          Sign In
+        </button>
+      </div>
+    </form>
+
+    <div class="mt-3 text-center">
+      <p>Don't have an account? <a routerLink="/signup">Sign Up</a></p>
+    </div>
+  </div>
+</div>

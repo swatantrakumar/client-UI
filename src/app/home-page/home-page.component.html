@@ -1,0 +1,66 @@
+<div class="container-fluid p-0">
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <!-- Logo on the left -->
+      <a class="navbar-brand" href="#">
+        <img src="assets/logo.png" alt="Assignment Logo" style="width: 150px; height: 50px;">
+      </a>
+
+      <!-- Navbar Links and User Menu -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <button class="btn btn-outline-primary" *ngIf="!isLoggedIn" (click)="signin()">Sign In</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-primary" *ngIf="!isLoggedIn" (click)="signup()">Sign Up</button>
+          </li>
+
+          <!-- User Dropdown (Visible when logged in) -->
+          <li class="nav-item dropdown" *ngIf="isLoggedIn">
+            <a class="nav-link d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="assets/avtar.png" alt="User" class="rounded-circle" style="width: 40px; height: 40px;">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">
+                    <i class="fas fa-user me-2"></i>
+                    {{user.name}}
+                </a>
+              </li>
+              <li><a class="dropdown-item" href="#">
+                    <i class="fas fa-envelope me-2"></i>
+                    {{user.email}}
+                    <span *ngIf="user.enabled" class="text-success ms-2">
+                      <i class="fas fa-check-circle"></i>
+                    </span>
+                  </a>
+                </li>
+              <li><a class="dropdown-item" href="#">
+                    <i class="fas fa-mobile-alt me-2"></i>
+                    {{user.mobile}}
+                    <span *ngIf="user.isMobileVerified" class="text-success ms-2">
+                      <i class="fas fa-check-circle"></i>
+                    </span>
+                    <span *ngIf="!user.isMobileVerified" class="text-warning ms-2">
+                      <a routerLink="/verify-mobile" class="text-warning">Verify Now</a>
+                    </span>
+                  </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container text-center mt-5">
+    <h1>Welcome to Your Assignment Page</h1>
+    <p>This is a dummy home page with a user login feature.</p>
+  </div>
+</div>
+
+

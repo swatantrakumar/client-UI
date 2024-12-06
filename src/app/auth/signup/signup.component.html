@@ -1,0 +1,94 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
+    <h3 class="text-center mb-4">Sign Up</h3>
+    <form [formGroup]="signUpForm">
+      <!-- Name Field -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          placeholder="Enter your name"
+          required
+        />
+        <div *ngIf="signUpControl['name']?.touched && signUpControl['name']?.invalid" class="text-danger">
+          <div *ngIf="signUpControl['name']?.errors?.['required']">
+            Name is required.
+          </div>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          placeholder="Enter your email"
+          required
+        />
+        <div *ngIf="signUpControl['email']?.touched && signUpControl['email']?.invalid" class="text-danger">
+          <div *ngIf="signUpControl['email']?.errors?.['required']"> Email is required.</div>
+          <div *ngIf="signUpControl['email']?.errors?.['email']">Please enter a valid email address.</div>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          placeholder="Create a password"
+          required
+        />
+        <div *ngIf="signUpControl['password']?.touched && signUpControl['password']?.invalid" class="text-danger">
+          <div *ngIf="signUpControl['password']?.errors?.['required']">
+            Password is required.
+          </div>
+          <div *ngIf="signUpControl['password']?.errors?.['minlength']">
+            Password must be at least 8 characters long.
+          </div>
+          <div *ngIf="signUpControl['password']?.errors?.['pattern']">
+            Password must contain:
+            <ul>
+              <li>At least one uppercase letter</li>
+              <li>At least one lowercase letter</li>
+              <li>At least one number</li>
+              <li>At least one special character</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Field -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Mobile Number</label>
+        <input
+          type="tel"
+          formControlName="mobileNumber"
+          class="form-control"
+          placeholder="Enter your mobile"
+          required
+        />
+        <div *ngIf="signUpControl['mobileNumber']?.touched && signUpControl['mobileNumber']?.invalid" class="text-danger">
+          <div *ngIf="signUpControl['mobileNumber']?.errors?.['required']">Mobile Number is required.</div>
+          <div *ngIf="signUpControl['mobileNumber']?.errors?.['pattern']">Mobile number must be exactly 10 digits.</div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="d-grid">
+        <button type="button" [disabled]="!signUpForm.valid" class="btn btn-primary" (click)="signup()">
+          Sign Up
+        </button>
+      </div>
+    </form>
+    <div class="mt-3 text-center">
+      <p>Already have an account? <a routerLink="/signin">Sign In</a></p>
+    </div>
+  </div>
+</div>
