@@ -38,12 +38,12 @@
                 </li>
               <li><a class="dropdown-item" href="#">
                     <i class="fas fa-mobile-alt me-2"></i>
-                    {{user.mobile}}
+                    {{user.mobileNumber}}
                     <span *ngIf="user.isMobileVerified" class="text-success ms-2">
                       <i class="fas fa-check-circle"></i>
                     </span>
                     <span *ngIf="!user.isMobileVerified" class="text-warning ms-2">
-                      <a routerLink="/verify-mobile" class="text-warning">Verify Now</a>
+                      <a  (click)="sendOtp()" class="text-warning">Verify Now</a>
                     </span>
                   </a>
               </li>
@@ -56,10 +56,21 @@
     </div>
   </nav>
 
+
   <!-- Main Content -->
   <div class="container text-center mt-5">
     <h1>Welcome to Your Assignment Page</h1>
-    <p>This is a dummy home page with a user login feature.</p>
+    <p *ngIf="!isLoggedIn">This is a dummy home page with a user login feature.</p>
+
+    <!-- Content shown when the user is logged in -->
+    <div *ngIf="isLoggedIn">
+      <p>Now you're logged in! Go to your User Icon or verify your mobile number.</p>
+    </div>
+
+    <!-- Content shown when the user is not logged in -->
+    <div *ngIf="!isLoggedIn">
+      <p>Please log in to access your profile and other features.</p>
+    </div>
   </div>
 </div>
 

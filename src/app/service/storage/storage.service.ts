@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class StorageService {
 
-  TOKEN: string = 'ID_TOKEN';
+  TOKEN: string = 'TOKEN';
   USER: string = 'USER';
 
 constructor() { }
